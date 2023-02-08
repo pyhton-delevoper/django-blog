@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["pyhton-delevoper <viktorov.vadimka@gmail.com>"]
 readme = "README.md"
-packages = [{include = "hexlet_django_project"}]
+packages = [{include = "hexlet_django_blog"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
