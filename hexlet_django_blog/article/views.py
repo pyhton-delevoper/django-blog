@@ -1,4 +1,12 @@
 from django.http import HttpResponse
+from django.views import View
 
-def index(request):
-    return HttpResponse('article')
+
+class ArticleIndex(View):
+
+    def get(self, request, *args, **kwargs):
+        return HttpResponse('article')
+
+
+def index(request, tag, article_id):
+    return HttpResponse(f'Статья номер {article_id} тег {tag}')
