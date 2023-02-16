@@ -3,3 +3,6 @@ run:
 
 lint:
 	poetry run flake8 hexlet_django_blog
+
+shell:
+	poetry run python manage.py shell
