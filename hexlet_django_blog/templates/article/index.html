@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Список статей</h1>
+    <a href="{% url 'create_form' %}">Create article</a>
     {% for item in articles %}
         <h2><a href="{% url 'show' id=item.id %}">{{ item.name }}</a></h2>
         <p>{{ item.body|slice:"200:" }}</p>

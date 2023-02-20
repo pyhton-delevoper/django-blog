@@ -1,7 +1,8 @@
 from django.http import HttpResponse
 from django.views import View
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from hexlet_django_blog.article.models import Article
+from hexlet_django_blog.article.forms import ArticleForm
 
 
 class IndexView(View):
@@ -25,3 +26,17 @@ def index(request, *args, **kwargs):
     return HttpResponse(
         f"Статья номер {kwargs['article_id']} тег {kwargs['tag']}"
     )
+
+
+class ArticleFormCreate(View):
+
+    def get(self, request, *args, **kwargs):
+        form = ArticleForm()
+        return render(request, 'article/create.html', {'form': form})
+    
+    def post(self, request, *args, **kwargs):
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        return render(request, 'article/create.html', {'form': form})
