@@ -1,8 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+    {% if form.subject.errors %}
+    <div>
+        <ul>
+        {% for error in form.subject.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     <form action="{% url 'create_form' %}" method="post">
         {% csrf_token %}
-        {{ form }}
+        <table border="1">
+            {{ form }}
+        </table>
         <input type="submit" value="create">
     </form>
 {% endblock %}
